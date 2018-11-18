@@ -10,20 +10,12 @@ from scipy.misc import imread, imsave, imresize
 
 
 
-imgread = imread(")
-imgresize_y =
-imgresize_x =                 
-imgOut = imresize(imgread, (imgresize_x, imgresize_y))
-imgOut = rotate(imgOut,imgRotate)
+
+               
 
 
-if any("True" in item for item in imgGrayscale):
-    imgOut[;] = imgOut.mean(axis==1)
 
-imgRoot = str(imgRoot)
-imgName = str(imgName)
-imgName_name, imgName_ext = imgName.split("*")
-imsave((imgRoot + "/"))
+
 
 
 
@@ -36,6 +28,8 @@ parser.add_argument('--rotate', type =int, help = "input the rotation degree")
 parser.add_argument('--grayscale', choices = ['True','False'], help = "input true or false if you want to grayscale")
 args = parser.parse_args()
 
+
+
 #-----
 
 imgDIRs = args.directory
@@ -43,6 +37,19 @@ imgResize = args.resize
 imgRotate = int(args.rotate)
 imgGrayscale = [args.grayscale]
 
+
+imgread = imread(imgOut)
+imgOut = imresize(imgread, (imgresize_x, imgresize_y))
+imgOut = rotate(imgOut,imgRotate)
+
+
+if any("True" in item for item in imgGrayscale):
+    imgOut[:] = imgOut.mean(axis==1)
+
+imgRoot = str(imgRoot)
+imgName = str(imgName)
+imgName_name, imgName_ext = imgName.split("*")
+imsave((imgRoot + "/"))
 images = ['*.jpg', '*.jpeg', '*.png', '*.tif', '*.tiff']
 matches = []
 
@@ -52,7 +59,7 @@ for root, dirnames, filenames in os.walk(imgDIRs):
             matches.append(os.path.join(root, filename))
 
 print(matches)
-plt.show(matches)
+
 
    
 
